@@ -1,0 +1,1 @@
+Description of the frontend for the CountryPay project
