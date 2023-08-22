@@ -1,4 +1,4 @@
-const User = require('../models/user.model');
+const db = require('../models/index');
 const generatejwt = require('../helpers/JWT');
 const bcrypt = require('bcryptjs');
 const AppError = require('../helpers/AppError');
@@ -6,7 +6,7 @@ const AppError = require('../helpers/AppError');
 class UserServices {
     async login({ email, password, next }) {
         try {
-            const user = await User.findOne({
+            const user = await db.User.findOne({
                 where: {
                     email: email.toLowerCase(),
                     status: 'active',
@@ -34,7 +34,7 @@ class UserServices {
 
     async findOneUser({ attributes, next }) {
         try {
-            const user = await User.findOne({
+            const user = await db.User.findOne({
                 where: attributes,
             });
 
@@ -54,7 +54,12 @@ class UserServices {
             if (user) {
                 return next(new AppError(`User already exist`, 400));
             }
-            const newUser = await User.create(body);
+
+            const salt = await bcrypt.genSalt(12);
+            const secretPassword = await bcrypt.hash(body.password, salt);
+            body.password = secretPassword;
+
+            const newUser = await db.User.create(body);
             const token = await generatejwt(newUser.id);
 
             return { newUser, token };
