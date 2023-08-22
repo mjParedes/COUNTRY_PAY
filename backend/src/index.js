@@ -1,17 +1,34 @@
 const express = require('express');
-require('dotenv').config();
-//variables
-const port = process.env.PORT || 8000;
+const cors = require('cors');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+const hpp = require('hpp');
+
+const AppError = require('./helpers/AppError');
+const globalErrorHandle = require('./controllers/error.controller');
+
+const userRouter = require('./routes/user.routes');
+
 const app = express();
-
-//Rutas
-require('./routes')(app)
-
-app.get('*', (req,res) => {
-    res.status(200).send({
-        message: 'Bienvenidos a la api de CountryPay'
-    })
+const limiter = rateLimit({
+    max: 1000,
+    windowMs: 60 * 60 * 1000,
+    message: 'too many renders from this api',
 });
-//empezando el servicio
-app.listen(port)
-console.log('corriendo en ', port)
+app.use(express.json());
+app.use(cors());
+app.use(helmet());
+app.use(hpp());
+
+app.use('/api/v1', limiter);
+app.use('/api/v1/users', userRouter);
+
+app.all('*', (req, res, next) => {
+    return next(
+        new AppError(`Cant find ${req.originalUrl} on this server!`, 404),
+    );
+});
+
+app.use(globalErrorHandle);
+
+module.exports = app;

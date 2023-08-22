@@ -1,47 +1,76 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-      // User.hasMany(models.Associated_account,{
-      //   foreignKey:'id_user',
-      // }),
-      // User.hasMany(models.User_Transaction,{
-      //   foreignKey:'iduser',
-      // })
-      // User.belongsTo(models.Billingdata,{
-      //   foreignKey:'id',
-      //   targetKey:'id_billingdata'
-      // })
-      // User.hasMany(models.Cards,{
-      //   foreignKey:'id',
-      //   targetKey:'id_card'
-      // })
+    class User extends Model {
+        /**
+         * Helper method for defining associations.
+         * This method is not a part of Sequelize lifecycle.
+         * The `models/index` file will call this method automatically.
+         */
+        static associate(models) {
+            // define association here
+        }
     }
-  }
-  User.init({
-    id: DataTypes.STRING,
-    name: DataTypes.STRING,
-    lastname: DataTypes.STRING,
-    nickname: DataTypes.STRING,
-    password: DataTypes.STRING,
-    email: DataTypes.STRING,
-    id_billingdata: DataTypes.STRING,
-    id_account: DataTypes.STRING,
-    id_card: DataTypes.STRING,
-    phone: DataTypes.INTEGER,
-    balance: DataTypes.FLOAT
-  }, {
-    sequelize,
-    modelName: 'User',
-  });
-  return User;
+    User.init(
+        {
+            id: {
+                allowNull: false,
+                autoIncrement: true,
+                primaryKey: true,
+                type: DataTypes.INTEGER,
+            },
+            name: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+
+            lastName: {
+                type: DataTypes.STRING,
+                allowNull: true,
+            },
+            nickName: {
+                type: DataTypes.STRING,
+                allowNull: true,
+            },
+            password: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            email: {
+                type: DataTypes.STRING,
+                allowNull: false,
+                unique: true,
+            },
+            idBillingdata: {
+                type: DataTypes.STRING,
+                allowNull: true,
+            },
+            idAccount: {
+                type: DataTypes.STRING,
+                allowNull: true,
+            },
+            idCard: {
+                type: DataTypes.STRING,
+                allowNull: true,
+            },
+            phone: {
+                type: DataTypes.INTEGER,
+                allowNull: true,
+            },
+            balance: {
+                type: DataTypes.FLOAT,
+                allowNull: true,
+            },
+            status: {
+                type: DataTypes.ENUM('active', 'disabled'),
+                allowNull: false,
+                defaultValue: 'active',
+            },
+        },
+        {
+            sequelize,
+            modelName: 'User',
+        },
+    );
+    return User;
 };
