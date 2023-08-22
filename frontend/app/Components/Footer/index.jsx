@@ -23,9 +23,9 @@ const FOOTERLINKS = [
   }
 ];
 
-export function FooterComp()  {
+export  function FooterComp()  {
   return (
-    <footer className="w-full border-2">
+    <footer className="w-full border-2 text-Azul/100">
       <div className="w-full">
         <div>
           <span>Logo</span>

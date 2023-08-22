@@ -15,17 +15,17 @@ module.exports = {
       colors: {
 
         // COLORES PRINCIPALES
-        // Rosado
-        'Rosado/50': '#FDF2F8',
-        'Rosado/100': '#FCE7F3',
-        'Rosado/R200': '#FBCFE8',
-        'Rosado/300': '#F9A8D4',
-        'Rosado/400': '#F472B6',
-        'Rosado/500': '#EC4899',
-        'Rosado/600': '#DB2777',
-        'Rosado/700': '#B3185B',
-        'Rosado/800': '#9D174D',
-        'Rosado/900': '#831843',
+        // Azul
+        'Azul/50': '#EEF2FF',
+        'Azul/100': '#EOE7FF',
+        'Azul/R200': '#c7d2fe',
+        'Azul/300': '#a5b4fc',
+        'Azul/400': '#818cf8',
+        'Azul/500': '#6366f1',
+        'Azul/600': '#4S4fe5',
+        'Azul/700': '#4338Ca',
+        'Azul/800': '#3730A3',
+        'Azul/900': '#312E81',
 
         // Morado
         'Morado/50': '#FAF5FF',

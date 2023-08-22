@@ -1,8 +1,8 @@
 import Image from "next/image"
 
-export default function NavBar(){
+export  function NavBar(){
     return(
-        <div className="bg-Rosado/50 w-9/12 h-20 flex items-center ">
+        <div className="bg-Azul/50 w-9/12 h-20 flex items-center ">
             <div className="basis-1/2">
                 <Image src="/public/next.svg" width={60} height={60}></Image>
             </div>
