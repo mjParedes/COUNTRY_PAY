@@ -11,12 +11,12 @@ module.exports = {
       },
       id_user: {
         type: Sequelize.STRING,
-        references:{
-          model:'Users',
-          key: 'id'
-        },
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE'
+        // references:{
+        //   model:'Users',
+        //   key: 'id'
+        // },
+        // onDelete: 'CASCADE',
+        // onUpdate: 'CASCADE'
       },
       createdAt: {
         allowNull: false,

@@ -26,24 +26,24 @@ module.exports = {
       },
       id_billingdata: {
         type: Sequelize.STRING,
-        references:{
-          model:'Billingdata',
-          key:'id'
-        },
-        onUpdate:"CASCADE",
-        onDelete:"CASCADE"
+        // references:{
+        //   model:'Billingdata',
+        //   key:'id'
+        // },
+        // onUpdate:"CASCADE",
+        // onDelete:"CASCADE"
       },
       id_account: {
         type: Sequelize.STRING
       },
       id_card: {
         type: Sequelize.STRING,
-        references:{
-          model:'Card',
-          key:'id'
-        },
-        onUpdate:"CASCADE",
-        onDelete:"CASCADE"
+        // references:{
+        //   model:'Card',
+        //   key:'id'
+        // },
+        // onUpdate:"CASCADE",
+        // onDelete:"CASCADE"
       },
       phone: {
         type: Sequelize.INTEGER

@@ -11,21 +11,21 @@ module.exports = {
       },
       iduser: {
         type: Sequelize.STRING,
-        references:{
-          model:'Users',
-          key:'id'
-        },
-        onUpdate:"CASCADE",
-        onDelete:"CASCADE"
+        // references:{
+        //   model:'Users',
+        //   key:'id'
+        // },
+        // onUpdate:"CASCADE",
+        // onDelete:"CASCADE"
       },
       idtransaction: {
         type: Sequelize.STRING,
-        references:{
-          model:'Transaction',
-          key:'id'
-        },
-        onUpdate:"CASCADE",
-        onDelete:"CASCADE"
+        // references:{
+        //   model:'Transaction',
+        //   key:'id'
+        // },
+        // onUpdate:"CASCADE",
+        // onDelete:"CASCADE"
       },
       createdAt: {
         allowNull: false,
