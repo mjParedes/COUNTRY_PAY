@@ -1,7 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-    class User extends Model {
+    class Cards extends Model {
         /**
          * Helper method for defining associations.
          * This method is not a part of Sequelize lifecycle.
@@ -11,52 +11,37 @@ module.exports = (sequelize, DataTypes) => {
             // define association here
         }
     }
-    User.init(
+    Cards.init(
         {
+            number: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+            },
+            exp_date: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+            },
+            type: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
             name: {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
-
-            lastName: {
-                type: DataTypes.STRING,
+            security_code: {
+                type: DataTypes.INTEGER,
                 allowNull: false,
-            },
-
-            nickName: {
-                type: DataTypes.STRING,
-                allowNull: true,
-            },
-            password: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
-            email: {
-                type: DataTypes.STRING,
-                allowNull: false,
-                unique: true,
-            },
-            id_billingdata: {
-                type: DataTypes.STRING,
-                allowNull: true,
             },
             id_account: {
                 type: DataTypes.STRING,
-                allowNull: true,
-            },
-            phone: {
-                type: DataTypes.STRING,
-                allowNull: true,
-            },
-            avatar: {
-                type: DataTypes.STRING,
-                allowNull: true,
+                allowNull: false,
             },
         },
         {
             sequelize,
-            modelName: 'User',
+            modelName: 'Cards',
         },
     );
-    return User;
+    return Cards;
 };
