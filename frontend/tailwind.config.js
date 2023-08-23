@@ -7,6 +7,18 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        inter: ['Inter', 'sans'],
+      },
+      fontSize: {
+        'title':'55px',
+      },
+      width: {
+        'login': '320px',
+      },
+      height: {
+        'login': '284px',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
