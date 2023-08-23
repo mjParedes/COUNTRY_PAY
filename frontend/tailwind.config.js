@@ -14,10 +14,10 @@ module.exports = {
         'title':'55px',
       },
       width: {
-        'login': '320px',
+        'login': '360px',
       },
       height: {
-        'login': '284px',
+        'login': '320px',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
