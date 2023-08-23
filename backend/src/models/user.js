@@ -61,6 +61,10 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.FLOAT,
                 allowNull: true,
             },
+            avatar: {
+                type: DataTypes.STRING,
+                allowNull: true,
+            },
             status: {
                 type: DataTypes.ENUM('active', 'disabled'),
                 allowNull: false,
