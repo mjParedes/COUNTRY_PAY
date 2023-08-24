@@ -23,7 +23,6 @@ exports.login = catchAsync(async (req, res, next) => {
         password,
         next,
     });
-    console.log(user, token);
     res.status(200).json({
         status: 'success',
         token,
