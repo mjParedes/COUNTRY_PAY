@@ -7,7 +7,7 @@ const hpp = require('hpp');
 const AppError = require('./helpers/AppError');
 const globalErrorHandle = require('./controllers/error.controller');
 
-const userRouter = require('./routes/user.routes');
+const routes = require('./routes');
 
 const app = express();
 const limiter = rateLimit({
@@ -20,9 +20,9 @@ app.use(cors());
 app.use(helmet());
 app.use(hpp());
 
-// app.use('/api/v1', limiter);
-// app.use('/api/v1/users', userRouter);
-require('./routes')(app);
+app.use('/api/v1', limiter);
+app.use('/api/v1/users', userRouter);
+
 app.all('*', (req, res, next) => {
     return next(
         new AppError(`Cant find ${req.originalUrl} on this server!`, 404),

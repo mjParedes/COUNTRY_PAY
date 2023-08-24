@@ -27,7 +27,16 @@ exports.loginValidation = [
 ];
 
 exports.createUserValidation = [
-    body('name').notEmpty().withMessage('name cannot be empty'),
+    body('name')
+        .notEmpty()
+        .withMessage('name cannot be empty')
+        .isLength({ min: 8 })
+        .withMessage('name must be at least 8 characters long'),
+    body('lastName')
+        .notEmpty()
+        .withMessage('lastName cannot be empty')
+        .isLength({ min: 8 })
+        .withMessage('lastName must be at least 8 characters long'),
     body('email')
         .notEmpty()
         .withMessage('email cannot be empty')
@@ -37,11 +46,49 @@ exports.createUserValidation = [
         .notEmpty()
         .withMessage('password cannot be empty')
         .isLength({ min: 5 })
-        .withMessage('password must be at least 8 characters long'),
+        .withMessage('password must be at least 5 characters long'),
     body('phone')
         .notEmpty()
         .withMessage('description cannot be empty')
         .isInt()
         .withMessage('phone number must be a integer'),
+    validFields,
+];
+
+const customExpiredCard = (value) => {
+    const format = /^(0[1-9]|1[0-2])\/\d{2}$/.test(value);
+    return format;
+};
+
+exports.createCardValidation = [
+    body('number')
+        .notEmpty()
+        .withMessage('number cannot be empty')
+        .isCreditCard()
+        .withMessage('is not a valid credit card number')
+        .isLength({ min: 16, max: 16 })
+        .withMessage('number'),
+    body('exp_date')
+        .notEmpty()
+        .withMessage('email cannot be empty')
+        .custom(customExpiredCard)
+        .withMessage('The "exp_date" field must have the format MM/YY'),
+    body('type')
+        .notEmpty()
+        .withMessage('type cannot be empty')
+        .isIn(['credito', 'debito'])
+        .withMessage('type is credito or debito'),
+    body('name')
+        .notEmpty()
+        .withMessage('name cannot be empty')
+        .isLength({ min: 5, max: 25 })
+        .withMessage(
+            'name must be at least 5 characters long, and 25 character max',
+        ),
+    body('security_code')
+        .isInt()
+        .withMessage('security_code must be an integer')
+        .isLength({ min: 3, max: 3 })
+        .withMessage('security_code must have 3 characters long'),
     validFields,
 ];
