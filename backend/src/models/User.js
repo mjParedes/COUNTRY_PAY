@@ -13,12 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     }
     User.init(
         {
-            id: {
-                allowNull: false,
-                autoIncrement: true,
-                primaryKey: true,
-                type: DataTypes.INTEGER,
-            },
+           
             name: {
                 type: DataTypes.STRING,
                 allowNull: false,
@@ -26,8 +21,9 @@ module.exports = (sequelize, DataTypes) => {
 
             lastName: {
                 type: DataTypes.STRING,
-                allowNull: true,
+                allowNull: false,
             },
+
             nickName: {
                 type: DataTypes.STRING,
                 allowNull: true,
@@ -41,30 +37,21 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false,
                 unique: true,
             },
-            idBillingdata: {
+            id_billingdata: {
                 type: DataTypes.STRING,
                 allowNull: true,
             },
-            idAccount: {
-                type: DataTypes.STRING,
-                allowNull: true,
-            },
-            idCard: {
+            id_account: {
                 type: DataTypes.STRING,
                 allowNull: true,
             },
             phone: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.STRING,
                 allowNull: true,
             },
-            balance: {
-                type: DataTypes.FLOAT,
+            avatar: {
+                type: DataTypes.STRING,
                 allowNull: true,
-            },
-            status: {
-                type: DataTypes.ENUM('active', 'disabled'),
-                allowNull: false,
-                defaultValue: 'active',
             },
         },
         {

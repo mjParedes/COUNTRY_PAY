@@ -20,9 +20,9 @@ app.use(cors());
 app.use(helmet());
 app.use(hpp());
 
-app.use('/api/v1', limiter);
-app.use('/api/v1/users', userRouter);
-
+// app.use('/api/v1', limiter);
+// app.use('/api/v1/users', userRouter);
+require('./routes')(app);
 app.all('*', (req, res, next) => {
     return next(
         new AppError(`Cant find ${req.originalUrl} on this server!`, 404),
