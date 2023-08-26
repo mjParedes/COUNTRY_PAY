@@ -92,3 +92,13 @@ exports.createCardValidation = [
         .withMessage('security_code must have 3 characters long'),
     validFields,
 ];
+exports.AvatarValidation = [
+    body('avatar')
+        .custom((valor, { req }) => {
+            if (!req.file) {
+                throw new Error('Avatar image required');
+            }
+            return true;
+        }),
+        validFields,
+];

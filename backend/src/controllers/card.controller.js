@@ -14,3 +14,4 @@ exports.createCard = catchAsync(async (req, res, next) => {
         card,
     });
 });
+

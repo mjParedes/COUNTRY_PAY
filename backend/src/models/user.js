@@ -1,5 +1,6 @@
 'use strict';
 const { Model } = require('sequelize');
+const defaultValue = '/backend/public/media/image/avatar.png'
 module.exports = (sequelize, DataTypes) => {
     class User extends Model {
         /**
@@ -51,6 +52,12 @@ module.exports = (sequelize, DataTypes) => {
             avatar: {
                 type: DataTypes.STRING,
                 allowNull: true,
+                defaultValue: defaultValue
+            },
+            status: {
+                type: DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: true
             },
         },
         {

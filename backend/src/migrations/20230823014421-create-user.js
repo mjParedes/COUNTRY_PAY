@@ -1,4 +1,5 @@
 'use strict';
+const defaultValue = '/backend/public/media/image/avatar.png'
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
@@ -48,6 +49,12 @@ module.exports = {
             avatar: {
                 type: Sequelize.STRING,
                 allowNull: true,
+                defaultValue: defaultValue
+            },
+            status: {
+                type: Sequelize.BOOLEAN,
+                allowNull: false,
+                defaultValue: true
             },
             createdAt: {
                 allowNull: false,
