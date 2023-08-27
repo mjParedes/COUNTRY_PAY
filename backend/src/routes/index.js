@@ -1,6 +1,6 @@
 const userController = require('../controllers/user.controller');
 const { createCard } = require('../controllers/card.controller');
-const {updateAvatar} = require('../controllers/avatar.controller');
+const {updateAvatar,deleteAvatar} = require('../controllers/avatar.controller');
 const avatarUpload = require('../middlewares/multer');
 const {
     loginValidation,
@@ -18,13 +18,12 @@ module.exports = (app) => {
     })
   })
   //User login
-
   app.post('/create', createUserValidation, userController.createUser);
   app.post('/login', loginValidation, userController.login);
 
   //Avatar
-  
-  app.put('/avatar/:id',AvatarValidation, avatarUpload ,updateAvatar)
+  app.put('/avatar/:id', avatarUpload ,updateAvatar);
+  app.put('/avatar/:id/delete',deleteAvatar);
 
   //Card
 

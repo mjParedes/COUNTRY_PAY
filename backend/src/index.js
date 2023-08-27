@@ -20,8 +20,8 @@ const limiter = rateLimit({
     windowMs: 60 * 60 * 1000,
     message: 'too many renders from this api',
 });
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 app.use(cors({
     origin: '*'

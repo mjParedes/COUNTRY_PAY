@@ -1,22 +1,27 @@
 const AvatarServices = require('../services/avatar.services');
 const avatarServices = new AvatarServices();
+const catchAsync = require('../helpers/catchAsync');
 
-exports.updateAvatar = async (req,res,next) => {
-    const user_id = req.user.id // id del usuario logeado
+exports.updateAvatar =catchAsync( async (req, res, next) => {
+    const user_id = req.params.id // id del usuario logeado
+    console.log(user_id)
     const newAvatarFile = req.file; // Archivo de imagen subido
 
-    try {
-        const updateUser = await avatarServices.updateAvatar(user_id,newAvatarFile);
+        const updateUser = await avatarServices.updateAvatar({user_id,newAvatarFile,next});
         res.status(200).json({
             status: 'success',
             message: 'Avatar updated successfully',
             user: updateUser,
         });
-    } catch (error) {
-        console.error('Error updating avatar:', error);
-        res.status(500).json({
-            status: 'error',
-            message: 'An error occurred while updating the avatar',
+    });
+
+    exports.deleteAvatar = catchAsync(async (req, res, next) => {
+        const user_id = req.params.id // id del usuario 
+        const deleteAvatar = await avatarServices.deleteAvatar(user_id,next)
+        res.status(200).json({
+            status: 'success',
+            message: 'Avatar deleted successfully',
+            user: deleteAvatar,
         });
-    }
-}
+    
+    });

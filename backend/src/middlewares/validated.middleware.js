@@ -95,6 +95,7 @@ exports.createCardValidation = [
 exports.AvatarValidation = [
     body('avatar')
         .custom((valor, { req }) => {
+            console.log(req.file)
             if (!req.file) {
                 throw new Error('Avatar image required');
             }
