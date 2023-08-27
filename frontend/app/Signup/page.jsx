@@ -7,16 +7,19 @@ import * as Yup from "yup";
 import PageTitle from "../Components/FormComp/Title";
 import SubTitle from "../Components/FormComp/SubTitle";
 import Button from "../Components/Button";
+import handleSignup from "./signupService";
+import { redirect } from "next/dist/server/api-utils";
 
 export default function SignupPage() {
   const signupSchema = () =>
     Yup.object().shape({
-      firstName: Yup.string().required("Campo requerido"),
+      name: Yup.string().required("Campo requerido"),
       lastName: Yup.string().required("Campo requerido"),
     });
 
-  const handleSubmit = (values) => {
-    console.log(values)
+  const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
+    await handleSignup(values, setSubmitting, setFieldError);
+    console.log(values);
   };
 
   return (
@@ -24,12 +27,12 @@ export default function SignupPage() {
       <div className="w-full md:w-1/2">
         <Image
           src={signupImg}
-          alt="signup"
+          alt="signup image"
           className="w-full h-full object-cover"
         />
       </div>
       <Formik
-        initialValues={{ firstName: "", lastName: "" }}
+        initialValues={{ name: "", lastName: "" }}
         validationSchema={signupSchema}
         onSubmit={handleSubmit}
       >
@@ -40,19 +43,17 @@ export default function SignupPage() {
             <FormInput labelHtmlFor="text" label="Nombre (s)" />
             <Field
               type="text"
-              name="firstName"
+              name="name"
               placeholder="Ingresar nombre"
               className="w-full h-12 p-2 rounded border border-gray-300 focus:outline-none focus:border-blue-500 mt-2  text-lg placeholder-Grises/350 mb-4"
             />
 
-            {/* Mensaje de Error email*/}
             <ErrorMessage
-              name="firstName"
+              name="name"
               component="p"
               className="text-red-500 text-sm mb-4"
             />
 
-            {/* input de Contraseña */}
             <FormInput labelHtmlFor="text" label="Apellido" />
             <Field
               type="text"
@@ -67,8 +68,51 @@ export default function SignupPage() {
               className="text-red-500 text-sm mb-4"
             />
 
+          {/* Campos a aplicar proximamente */}
+            {/* <FormInput labelHtmlFor="password" label="Contraseña" />
+            <Field
+              type="password"
+              name="password"
+              placeholder="Ingresar contraseña"
+              className="w-full h-12 p-2 rounded border border-gray-300 focus:outline-none focus:border-blue-500 mt-2 text-lg placeholder-Grises/350 mb-2"
+            />
+
+            <ErrorMessage
+              name="password"
+              component="p"
+              className="text-red-500 text-sm mb-4"
+            />
+
+            <FormInput labelHtmlFor="email" label="E-mail" />
+            <Field
+              type="email"
+              name="email"
+              placeholder="Ingresar e-mail"
+              className="w-full h-12 p-2 rounded border border-gray-300 focus:outline-none focus:border-blue-500 mt-2 text-lg placeholder-Grises/350 mb-2"
+            />
+
+            <ErrorMessage
+              name="email"
+              component="p"
+              className="text-red-500 text-sm mb-4"
+            />
+
+            <FormInput labelHtmlFor="phone" label="Telefono" />
+            <Field
+              type="phone"
+              name="phone"
+              placeholder="Ingresar telefono"
+              className="w-full h-12 p-2 rounded border border-gray-300 focus:outline-none focus:border-blue-500 mt-2 text-lg placeholder-Grises/350 mb-2"
+            />
+
+            <ErrorMessage
+              name="phone"
+              component="p"
+              className="text-red-500 text-sm mb-4"
+            /> */}
+
             <div className="flex mt-8">
-              <Button type="submit" text="Registrar" variant="filled" />
+              <Button type="submit" text="Registrarse" variant="filled" />
             </div>
           </div>
           <SubTitle
