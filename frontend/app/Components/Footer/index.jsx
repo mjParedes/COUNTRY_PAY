@@ -32,7 +32,7 @@ export function FooterComp() {
       <div className="w-full flex justify-around items-center">
         <div className="w-1/3 p-12">
           <Link href={"/"}>
-            <Image src="/logos/Logo-CPweb.svg" width={255.64} height={46} />
+            <Image alt="contry-pay" src="/logos/Logo-CPweb.svg" width={255.64} height={46} />
           </Link>
         </div>
         <div className="w-full">

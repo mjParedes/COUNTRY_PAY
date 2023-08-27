@@ -15,7 +15,7 @@ export function NavBar(){
                 
                 <div className=" flex w-1/3 h-full items-center justify-center lg:w-1/3 m-0  ">
                     <Link href={"/"}>
-                        <Image src="/logos/Logo-CPweb.svg" width={102} height={18} layout="responsive" className="w-24 h-4 p-2 lg:w-64 lg:h-12"/>
+                        <Image alt="country-pay" src="/logos/Logo-CPweb.svg" width={102} height={18}  className="w-24 h-4 p-2 lg:w-64 lg:h-12"/>
                     </Link>
                 </div>
 
