@@ -1,5 +1,6 @@
 
-async function handleLogin(values, setSubmitting, setFieldError) {
+async function handleLogin(values, setSubmitting, setFieldError, authContext, router) {
+  
     try {
       const loginData = {
         email: values.email,
@@ -19,8 +20,8 @@ async function handleLogin(values, setSubmitting, setFieldError) {
       if (response.status === 200) {
         const data = await response.json();
         console.log('Usuario autenticado:', data);
-        // Realiza acciones adicionales después de iniciar sesión
-        
+        authContext.setAuthState(data);
+        router.push('/dashboard');
         setSubmitting(false);
       } else {
         console.error('Error al iniciar sesión:', response.statusText);
