@@ -34,6 +34,7 @@ class UserServices {
 
     async findOneUser({ attributes, next }) {
         try {
+            console.log(attributes)
             const user = await db.User.findOne({
                 where: attributes,
             });
@@ -64,6 +65,7 @@ class UserServices {
 
             return { newUser, token };
         } catch (error) {
+            console.log(error, "hola")
             throw new Error(error);
         }
     }
