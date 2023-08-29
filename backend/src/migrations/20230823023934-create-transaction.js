@@ -22,8 +22,14 @@ module.exports = {
         allowNull: false
       },
       id_account: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Accounts',
+          key:'id',
+          onUpdate:"CASCADE",
+          onDelete:"CASCADE"
+        }
       },
       createdAt: {
         allowNull: false,

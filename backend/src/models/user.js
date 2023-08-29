@@ -1,6 +1,10 @@
 'use strict';
-const { Model } = require('sequelize');
+const { Model, UUIDV4 } = require('sequelize');
 const defaultValue = '/backend/public/media/image/avatar.png'
+// const { v4: uuid } = require('uuid');
+// const { Sequelize } = require('.');
+// const { DataTypes } = require('sequelize');
+// console.log(typeof(uuid())=== typeof(DataTypes.UUID))
 module.exports = (sequelize, DataTypes) => {
     class User extends Model {
         /**
@@ -9,11 +13,30 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            // define association here
+            this.hasMany(models.Associated_Accounts,{
+                foreingKey: "id_user",
+                as:"associated-accounts"})
+              
+              this.belongsTo(models.Billingdata,{
+                foreingKey:"id_billingdata", //relacion al reves
+                as: "billingdata"
+              })
+              
+              this.belongsTo(models.Accounts,{
+                foreingKey:"id_account", //deberia estar al reves
+                as:"account"
+              })
+              
         }
     }
     User.init(
         {
+            id: {
+                allowNull: false,
+                autoIncrement: true,
+                primaryKey: true,
+                type: DataTypes.UUID
+            },
             name: {
                 type: DataTypes.STRING,
                 allowNull: false,

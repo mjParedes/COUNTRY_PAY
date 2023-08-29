@@ -4,6 +4,7 @@ const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const hpp = require('hpp');
 const fs = require('fs');
+const path = require('path');
 const AppError = require('./helpers/AppError');
 const bodyParser = require('body-parser');
 const globalErrorHandle = require('./controllers/error.controller');
@@ -38,7 +39,8 @@ app.all('*', (req, res, next) => {
         new AppError(`Cant find ${req.originalUrl} on this server!`, 404),
     );
 });
-app.use('/public/uploads', express.static('public/uploads'));
+// app.use('/public', express.static('/public'));
+app.use('/public', express.static(path.join(__dirname + '/public')))
 app.use(globalErrorHandle);
 
 module.exports = app;

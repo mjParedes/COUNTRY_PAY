@@ -11,8 +11,14 @@ module.exports = {
         defaultValue: Sequelize.UUIDV4,
       },
       id_user: {
-        type: Sequelize.STRING,
-        allowNull:false
+        type: Sequelize.INTEGER,
+        allowNull:false,
+        references: {
+          model:'Users',
+          key: 'id',
+          onUpdate:"CASCADE",
+          onDelete:"CASCADE"
+        }
       },
       createdAt: {
         allowNull: false,

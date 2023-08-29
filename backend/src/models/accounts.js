@@ -10,11 +10,29 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.hasOne(models.User,{
+        foreingKey:"id_account", //deberia estar al reves
+        as:"user"
+      })
+      
+      this.hasMany(models.Transaction,{
+        foreingKey:"id_account",
+        as:"transactions"
+      })
+      
+      this.hasMany(models.Cards,{
+        foreingKey:"id_account",
+        as:"cards"
+      })
     }
   }
   Accounts.init({
-
+   
+    id: {
+      allowNull: false,
+      primaryKey: true,
+      type: DataTypes.UUID,
+    },
 
     id_user:{
       type: DataTypes.STRING,

@@ -10,8 +10,14 @@ module.exports = {
         defaultValue: Sequelize.UUIDV4,
       },
       id_transaction: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model:'Transaction',
+          key:'id',
+          onUpdate:"CASCADE",
+          onDelete:"CASCADE"
+        }
       },
       ammount: {
         type: Sequelize.INTEGER,

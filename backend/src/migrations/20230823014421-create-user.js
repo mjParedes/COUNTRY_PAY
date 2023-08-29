@@ -6,9 +6,8 @@ module.exports = {
         await queryInterface.createTable('Users', {
             id: {
               allowNull: false,
-              // autoIncrement: true,
               primaryKey: true,
-              type: Sequelize.UUID,
+              type: Sequelize.INTEGER,
               defaultValue: Sequelize.UUIDV4
             },
             name: {
@@ -37,10 +36,22 @@ module.exports = {
             id_billingdata: {
                 type: Sequelize.STRING,
                 allowNull: true,
+                references: {
+                    model:'Billingdata',
+                    key: 'id',
+                    onUpdate:"CASCADE",
+                    onDelete:"CASCADE"
+                }
             },
             id_account: {
                 type: Sequelize.STRING,
                 allowNull: true,
+                references: {
+                    model:'Accounts',
+                    key: 'id',
+                    onUpdate:"CASCADE",
+                    onDelete:"CASCADE"
+                }
             },
             phone: {
                 type: Sequelize.STRING,

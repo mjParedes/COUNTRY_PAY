@@ -8,7 +8,11 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            // define association here
+            this.belongsTo(models.Accounts,{
+                foreingKey:"id_account",
+                as:"account"
+              })
+              
         }
     }
     Cards.init(
@@ -34,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false,
             },
             id_account: {
-                type: DataTypes.STRING,
+                type: DataTypes.INTEGER,
                 allowNull: false,
             },
         },

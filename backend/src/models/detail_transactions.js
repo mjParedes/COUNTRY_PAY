@@ -10,12 +10,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.belongsTo(models.Trasaction,{
+        foreingKey:"id_transaction",
+        as:"transaction"
+      })
     }
   }
   Detail_transactions.init({
     id_transaction:{
-      type:DataTypes.STRING,
+      type:DataTypes.UUID,
       allowNull:false
     },
     ammount:{

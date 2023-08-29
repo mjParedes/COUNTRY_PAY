@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const user = require('./user');
 module.exports = (sequelize, DataTypes) => {
   class Associated_Accounts extends Model {
     /**
@@ -10,12 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.belongsTo(models.User,{
+        foreingKey:"id_user",
+        as:"user"
+      })
     }
   }
   Associated_Accounts.init({
     id_user: {
-      type:DataTypes.STRING,
+      type: DataTypes.UUID,
       allowNull:false
     } 
   }, {
