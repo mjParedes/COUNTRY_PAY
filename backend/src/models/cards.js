@@ -17,6 +17,12 @@ module.exports = (sequelize, DataTypes) => {
     }
     Cards.init(
         {
+            id: {
+                allowNull: false,
+                autoIncrement: true,
+                primaryKey: true,
+                type: DataTypes.INTEGER
+            },
             number: {
                 type: DataTypes.INTEGER,
                 allowNull: false,

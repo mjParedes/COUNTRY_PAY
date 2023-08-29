@@ -18,9 +18,10 @@ module.exports = (sequelize, DataTypes) => {
         {
             id: {
                 allowNull: false,
+                autoIncrement: true,
                 primaryKey: true,
-                type: DataTypes.INTEGER,
-              },
+                type: DataTypes.INTEGER
+            },
             street: {
                 type: DataTypes.STRING,
                 allowNull: true,

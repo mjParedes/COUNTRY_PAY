@@ -6,13 +6,11 @@ module.exports = {
             id: {
                 allowNull: false,
                 primaryKey: true,
+                autoIncrement: true,
                 type: Sequelize.INTEGER,
-                defaultValue: Sequelize.UUIDV4,
+                //defaultValue: Sequelize.UUIDV4,
             },
-            id_user: {
-                type: Sequelize.STRING,
-                allowNull: false,
-            },
+            //vola la FK de id_user
             cbu: {
                 type: Sequelize.STRING,
                 allowNull: false,

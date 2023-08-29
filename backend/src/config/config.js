@@ -3,8 +3,8 @@ require('dotenv').config();
 module.exports = {
     development: {
         username: 'postgres',
-        password: 'root',
-        database: 'countrypay_db',
+        password: 'password',
+        database: 'local',
         host: 'localhost',
         dialect: 'postgres',
         port: 5432,

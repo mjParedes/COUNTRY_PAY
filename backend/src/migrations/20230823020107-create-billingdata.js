@@ -6,8 +6,9 @@ module.exports = {
             id: {
                 allowNull: false,
                 primaryKey: true,
+                autoIncrement: true,
                 type: Sequelize.INTEGER,
-                defaultValue: Sequelize.UUIDV4,
+                //defaultValue: Sequelize.UUIDV4,
             },
             street: {
                 type: Sequelize.STRING,

@@ -7,19 +7,11 @@ module.exports = {
       id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
-      },
-      id_user: {
+        autoIncrement: true,
         type: Sequelize.INTEGER,
-        allowNull:false,
-        references: {
-          model:'Users',
-          key: 'id',
-          onUpdate:"CASCADE",
-          onDelete:"CASCADE"
-        }
+        //defaultValue: Sequelize.UUIDV4,
       },
+      //vole la FK de User
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

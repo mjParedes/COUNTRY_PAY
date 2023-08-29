@@ -7,8 +7,9 @@ module.exports = {
             id: {
               allowNull: false,
               primaryKey: true,
+              autoIncrement: true,
               type: Sequelize.INTEGER,
-              defaultValue: Sequelize.UUIDV4
+              //defaultValue: Sequelize.UUIDV4
             },
             name: {
                 type: Sequelize.STRING,
@@ -33,26 +34,7 @@ module.exports = {
                 allowNull: false,
                 unique: true,
             },
-            id_billingdata: {
-                type: Sequelize.STRING,
-                allowNull: true,
-                references: {
-                    model:'Billingdata',
-                    key: 'id',
-                    onUpdate:"CASCADE",
-                    onDelete:"CASCADE"
-                }
-            },
-            id_account: {
-                type: Sequelize.STRING,
-                allowNull: true,
-                references: {
-                    model:'Accounts',
-                    key: 'id',
-                    onUpdate:"CASCADE",
-                    onDelete:"CASCADE"
-                }
-            },
+            // vole las llaves foraneas
             phone: {
                 type: Sequelize.STRING,
                 allowNull: true,

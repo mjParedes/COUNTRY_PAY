@@ -6,19 +6,11 @@ module.exports = {
       id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
-      },
-      id_transaction: {
+        autoIncrement: true,
         type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model:'Transaction',
-          key:'id',
-          onUpdate:"CASCADE",
-          onDelete:"CASCADE"
-        }
+        //defaultValue: Sequelize.UUIDV4,
       },
+      //vole la FK de id_transsaction
       ammount: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -31,6 +23,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      //VER ESTO:. ES UN LLAVE FORANEA ?? o solo un string??
       id_transaction_stripe: {
         type: Sequelize.STRING,
         allowNull: true,

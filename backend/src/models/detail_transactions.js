@@ -17,10 +17,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Detail_transactions.init({
-    id_transaction:{
-      type:DataTypes.UUID,
-      allowNull:false
-    },
+    id:{
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+  },
     ammount:{
       type:DataTypes.INTEGER,
       allowNull:false

@@ -9,24 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      iduser: {
-        type: Sequelize.STRING,
-        // references:{
-        //   model:'Users',
-        //   key:'id'
-        // },
-        // onUpdate:"CASCADE",
-        // onDelete:"CASCADE"
-      },
-      idtransaction: {
-        type: Sequelize.STRING,
-        // references:{
-        //   model:'Transaction',
-        //   key:'id'
-        // },
-        // onUpdate:"CASCADE",
-        // onDelete:"CASCADE"
-      },
+      //vole las columnas de las FK, y las creo en la migracion de asociaciones.
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
