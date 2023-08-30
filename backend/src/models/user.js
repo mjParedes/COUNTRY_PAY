@@ -60,14 +60,14 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false,
                 unique: true,
             },
-            id_billingdata: {
-                type: DataTypes.STRING,
-                allowNull: true,
-            },
-            id_account: {
-                type: DataTypes.STRING,
-                allowNull: true,
-            },
+            // id_billingdata: {
+            //     type: DataTypes.STRING,
+            //     allowNull: true,
+            // },
+            // id_account: {
+            //     type: DataTypes.STRING,
+            //     allowNull: true,
+            // },
             phone: {
                 type: DataTypes.STRING,
                 allowNull: true,

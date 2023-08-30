@@ -8,7 +8,7 @@ module.exports = {
         host: 'localhost',
         dialect: 'postgres',
         port: 5432,
-        logging: false,
+        logging: true,
         // username: 'usjibousucwj9iosdlnu',
         // password: 'sjFdecheOSRYlQmBQ1kI5dZSLKtajo',
         // database: 'bqwcqgazllgumqn7ptmq',
