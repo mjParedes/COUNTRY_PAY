@@ -1,6 +1,6 @@
 'use strict';
 const { Model, UUIDV4 } = require('sequelize');
-const defaultValue = '/backend/public/media/image/avatar.png'
+const defaultValue = '/backend/public/media/image/avatar.png';
 // const { v4: uuid } = require('uuid');
 // const { Sequelize } = require('.');
 // const { DataTypes } = require('sequelize');
@@ -13,29 +13,24 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            this.hasMany(models.Associated_Accounts,{
-                foreingKey: "id_user",
-                as:"associated-accounts"})
-              
-              this.belongsTo(models.Billingdata,{
-                foreingKey:"id_billingdata", //relacion al reves
-                as: "billingdata"
-              })
-              
-              this.belongsTo(models.Accounts,{
-                foreingKey:"id_account", //deberia estar al reves
-                as:"account"
-              })
-              
+            this.hasMany(models.Associated_Accounts, {
+                foreignKey: 'userId',
+            });
+            this.hasOne(models.Accounts, {
+                foreignKey: 'userId',
+            });
+            this.hasOne(models.Billingdata, {
+                foreignKey: 'userId',
+            });
         }
     }
     User.init(
         {
-            userId: {
-                allowNull: false,  // equivalente a require:true
+            id: {
+                allowNull: false, // equivalente a require:true
                 autoIncrement: true,
                 primaryKey: true,
-                type: DataTypes.INTEGER
+                type: DataTypes.INTEGER,
             },
             name: {
                 type: DataTypes.STRING,
@@ -60,14 +55,6 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false,
                 unique: true,
             },
-            // id_billingdata: {
-            //     type: DataTypes.STRING,
-            //     allowNull: true,
-            // },
-            // id_account: {
-            //     type: DataTypes.STRING,
-            //     allowNull: true,
-            // },
             phone: {
                 type: DataTypes.STRING,
                 allowNull: true,
@@ -75,12 +62,12 @@ module.exports = (sequelize, DataTypes) => {
             avatar: {
                 type: DataTypes.STRING,
                 allowNull: true,
-                defaultValue: defaultValue
+                defaultValue: defaultValue,
             },
             status: {
                 type: DataTypes.BOOLEAN,
                 allowNull: false,
-                defaultValue: true
+                defaultValue: true,
             },
         },
         {

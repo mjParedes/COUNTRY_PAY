@@ -8,9 +8,11 @@ module.exports = {
                 primaryKey: true,
                 autoIncrement: true,
                 type: Sequelize.INTEGER,
-                //defaultValue: Sequelize.UUIDV4,
             },
-            //vola la FK de id_user
+            userId: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+            },
             cbu: {
                 type: Sequelize.STRING,
                 allowNull: false,
@@ -18,6 +20,10 @@ module.exports = {
             balance: {
                 type: Sequelize.FLOAT,
                 allowNull: false,
+            },
+            account_detail_stripe: {
+                type: Sequelize.JSON,
+                allowNull: true,
             },
             createdAt: {
                 allowNull: false,

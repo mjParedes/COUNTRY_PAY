@@ -32,7 +32,7 @@ exports.protectRoute = catchAsync(async (req, res, next) => {
 exports.verifyAccountOwner = catchAsync(async (req, res, next) => {
     const { sessionUser } = req;
     const { id } = req.params;
-    if (id !== sessionUser.id) {
+    if (id != sessionUser.id) {
         return next(new AppError('You do not own this account.', 401));
     }
 

@@ -10,8 +10,7 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             this.belongsTo(models.User, {
-                foreingKey: 'id_user',
-                as: 'user',
+                foreignKey: 'userId',
             });
         }
     }
@@ -21,6 +20,10 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
+                type: DataTypes.INTEGER,
+            },
+            userId: {
+                allowNull: false,
                 type: DataTypes.INTEGER,
             },
         },

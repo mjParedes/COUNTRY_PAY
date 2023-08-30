@@ -8,20 +8,12 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            this.hasOne(models.User, {
-                foreingKey: 'id_account', //deberia estar al reves
-                as: 'user',
-            });
+            console.log(models);
+            this.belongsTo(models.User, { foreignKey: 'userId' });
 
-            this.hasMany(models.Transaction, {
-                foreingKey: 'id_account',
-                as: 'transactions',
-            });
+            this.hasMany(models.Transaction, { foreignKey: 'AccountId' });
 
-            this.hasMany(models.Cards, {
-                foreingKey: 'id_account',
-                as: 'cards',
-            });
+            this.hasMany(models.Cards, { foreignKey: 'AccountId' });
         }
     }
     Accounts.init(
@@ -32,6 +24,10 @@ module.exports = (sequelize, DataTypes) => {
                 primaryKey: true,
                 type: DataTypes.INTEGER,
             },
+            userId: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+            },
             cbu: {
                 type: DataTypes.STRING,
                 allowNull: false,
@@ -40,6 +36,10 @@ module.exports = (sequelize, DataTypes) => {
             balance: {
                 type: DataTypes.FLOAT,
                 allowNull: false,
+            },
+            account_detail_stripe: {
+                type: DataTypes.JSON,
+                allowNull: true,
             },
         },
         {

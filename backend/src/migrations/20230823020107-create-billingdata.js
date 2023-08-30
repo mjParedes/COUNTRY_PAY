@@ -8,7 +8,10 @@ module.exports = {
                 primaryKey: true,
                 autoIncrement: true,
                 type: Sequelize.INTEGER,
-                //defaultValue: Sequelize.UUIDV4,
+            },
+            userId: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
             },
             street: {
                 type: Sequelize.STRING,

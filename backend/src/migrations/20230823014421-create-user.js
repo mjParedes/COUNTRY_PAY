@@ -1,21 +1,19 @@
 'use strict';
-const defaultValue = '/backend/public/media/image/avatar.png'
+const defaultValue = '/backend/public/media/image/avatar.png';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
         await queryInterface.createTable('Users', {
-            userId: {
-              allowNull: false,
-              primaryKey: true,
-              autoIncrement: true,
-              type: Sequelize.INTEGER,
-              //defaultValue: Sequelize.UUIDV4
+            id: {
+                allowNull: false,
+                primaryKey: true,
+                autoIncrement: true,
+                type: Sequelize.INTEGER,
             },
             name: {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
-
             lastName: {
                 type: Sequelize.STRING,
                 allowNull: false,
@@ -34,7 +32,6 @@ module.exports = {
                 allowNull: false,
                 unique: true,
             },
-            // vole las llaves foraneas
             phone: {
                 type: Sequelize.STRING,
                 allowNull: true,
@@ -42,12 +39,12 @@ module.exports = {
             avatar: {
                 type: Sequelize.STRING,
                 allowNull: true,
-                defaultValue: defaultValue
+                defaultValue: defaultValue,
             },
             status: {
                 type: Sequelize.BOOLEAN,
                 allowNull: false,
-                defaultValue: true
+                defaultValue: true,
             },
             createdAt: {
                 allowNull: false,
