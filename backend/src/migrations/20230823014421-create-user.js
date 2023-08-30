@@ -4,7 +4,7 @@ const defaultValue = '/backend/public/media/image/avatar.png'
 module.exports = {
     async up(queryInterface, Sequelize) {
         await queryInterface.createTable('Users', {
-            id: {
+            userId: {
               allowNull: false,
               primaryKey: true,
               autoIncrement: true,
