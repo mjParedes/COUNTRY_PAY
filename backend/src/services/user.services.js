@@ -6,7 +6,7 @@ const AppError = require('../helpers/AppError');
 class UserServices {
     async login({ email, password, next }) {
         try {
-            const user = await db.User.findOne({
+            const user = await db.User.findOne({ //*
                 where: {
                     email: email.toLowerCase(),
                     status: true,
@@ -38,7 +38,7 @@ class UserServices {
             const user = await db.User.findOne({
                 where: attributes,
             });
-
+            console.log("lalalalal")
             return user;
         } catch (error) {
             throw new Error(error);
@@ -47,20 +47,22 @@ class UserServices {
 
     async createUser({ body, next }) {
         try {
+            console.log('a')
             const user = await this.findOneUser({
                 attributes: { email: body.email },
                 next,
             });
-
+            console.log('b')
             if (user) {
                 return next(new AppError(`User already exist`, 400));
             }
-
+            console.log('c')
             const salt = await bcrypt.genSalt(12);
             const secretPassword = await bcrypt.hash(body.password, salt);
             body.password = secretPassword;
-
+            console.log("body: ",body)
             const newUser = await db.User.create(body);
+            console.log("llegue??")
             const token = await generatejwt(newUser.id);
 
             return { newUser, token };
