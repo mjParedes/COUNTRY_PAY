@@ -6,8 +6,12 @@ module.exports = {
             id: {
                 allowNull: false,
                 primaryKey: true,
-                type: Sequelize.UUID,
-                defaultValue: Sequelize.UUIDV4,
+                autoIncrement: true,
+                type: Sequelize.INTEGER,
+            },
+            AccountId: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
             },
             number: {
                 type: Sequelize.INTEGER,
@@ -29,10 +33,7 @@ module.exports = {
                 type: Sequelize.INTEGER,
                 allowNull: false,
             },
-            id_account: {
-                type: Sequelize.STRING,
-                allowNull: false,
-            },
+            //vole la FK de account
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE,
