@@ -11,6 +11,7 @@ const {
     protectRoute,
     verifyAccountOwner,
 } = require('../middlewares/auth.middleware');
+const db = require('../models/index');
 module.exports = (app) => {
   app.get('/api', (req,res)=>{
     res.status(200).send({
@@ -20,7 +21,7 @@ module.exports = (app) => {
   //User login
   app.post('/create', createUserValidation, userController.createUser);
   app.post('/login', loginValidation, userController.login);
-
+  
   //Avatar
   app.put('/avatar/:id', avatarUpload ,updateAvatar);
   app.put('/avatar/:id/delete',deleteAvatar);

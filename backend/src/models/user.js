@@ -61,11 +61,11 @@ module.exports = (sequelize, DataTypes) => {
                 unique: true,
             },
             id_billingdata: {
-                type: DataTypes.STRING,
+                type: DataTypes.INTEGER,
                 allowNull: true,
             },
             id_account: {
-                type: DataTypes.STRING,
+                type: DataTypes.INTEGER,
                 allowNull: true,
             },
             phone: {
