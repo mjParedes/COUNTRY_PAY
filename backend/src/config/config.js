@@ -2,20 +2,13 @@ require('dotenv').config();
 
 module.exports = {
     development: {
-        username: 'postgres',
-        password: 'password',
-        database: 'local',
-        host: 'localhost',
-        dialect: 'postgres',
+        username: process.env.POSTGRESQL_ADDON_USER,
+        password: process.env.POSTGRESQL_ADDON_PASSWORD,
+        database: process.env.POSTGRESQL_ADDON_DB,
+        host: process.env.POSTGRESQL_ADDON_HOST,
+        dialect: process.env.DB_DIALECT,
         port: 5432,
-        logging: true,
-        // username: 'usjibousucwj9iosdlnu',
-        // password: 'sjFdecheOSRYlQmBQ1kI5dZSLKtajo',
-        // database: 'bqwcqgazllgumqn7ptmq',
-        // host: 'bqwcqgazllgumqn7ptmq-postgresql.services.clever-cloud.com',
-        // dialect: 'postgres',
-        // port: 5432,
-        // loggin: false, 
+        loggin: false,
     },
     test: {
         username: 'postgres',

@@ -8,10 +8,7 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            this.hasOne(models.User,{
-                foreingKey:"id_billingdata", //deberia estar al reves
-                as:"user"
-              })
+            this.belongsTo(models.User, { foreignKey: 'userId' });
         }
     }
     Billingdata.init(
@@ -20,7 +17,11 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
-                type: DataTypes.INTEGER
+                type: DataTypes.INTEGER,
+            },
+            userId: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
             },
             street: {
                 type: DataTypes.STRING,

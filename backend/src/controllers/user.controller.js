@@ -1,16 +1,13 @@
 const catchAsync = require('../helpers/catchAsync');
 const UserServices = require('../services/user.services');
 const userServices = new UserServices();
-const { v4: uuidv4 } = require('uuid');
 
 exports.createUser = catchAsync(async (req, res, next) => {
-    console.log("1")
     const body = req.body;
-    
+    console.log(body)
     //body.id = uuidv4();
     console.log("2")
     const { newUser, token } = await userServices.createUser({ body, next });
-    console.log("3")
     res.status(200).json({
         status: 'success',
         message: 'The user has been created',

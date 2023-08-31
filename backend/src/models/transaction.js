@@ -9,13 +9,11 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             this.belongsTo(models.Accounts, {
-                foreingKey: 'id_account',
-                as: 'account',
+                foreignKey: 'AccountId',
             });
 
             this.hasOne(models.Detail_transactions, {
-                foreingKey: 'id_transaction',
-                as: 'detail',
+                foreignKey: 'transactionId',
             });
         }
     }
@@ -39,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
-            id_account: {
+            AccountId: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
             },

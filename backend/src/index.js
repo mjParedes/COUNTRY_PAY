@@ -13,8 +13,6 @@ if (!fs.existsSync(uploadDirectory)) {
     fs.mkdirSync(uploadDirectory, { recursive: true });
 }
 
-
-
 const app = express();
 const limiter = rateLimit({
     max: 1000,
@@ -22,17 +20,24 @@ const limiter = rateLimit({
     message: 'too many renders from this api',
 });
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors({
-    origin: '*'
-}));
+app.use(
+    cors({
+        origin: '*',
+    }),
+);
 app.use(helmet());
 app.use(hpp());
 
 app.use('/api/v1', limiter);
 // app.use('/api/v1/users', userRouter);
-require('./routes')(app)
+// require('./routes')(app);
+
+const userRoute = require('./routes/user.routes');
+const cardRoute = require('./routes/card.routes');
+app.use('/api/v1/users', userRoute);
+app.use('/api/v1/cards', cardRoute);
 
 app.all('*', (req, res, next) => {
     return next(
@@ -40,7 +45,7 @@ app.all('*', (req, res, next) => {
     );
 });
 // app.use('/public', express.static('/public'));
-app.use('/public', express.static(path.join(__dirname + '/public')))
+app.use('/public', express.static(path.join(__dirname + '/public')));
 app.use(globalErrorHandle);
 
 module.exports = app;
