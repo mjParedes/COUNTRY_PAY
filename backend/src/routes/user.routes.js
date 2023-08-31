@@ -1,13 +1,19 @@
-// const userController = require('../controllers/user.controller');
-// const {
-//     loginValidation,
-//     createUserValidation,
-// } = require('../middlewares/validated.middleware');
-// const express = require('express');
+const userController = require('../controllers/user.controller');
+const {
+    loginValidation,
+    createUserValidation,
+} = require('../middlewares/validated.middleware');
+const express = require('express');
 
-// const router = express.Router();
+const router = express.Router();
 
-// router.post('/create', createUserValidation, userController.createUser);
-// router.post('/login', loginValidation, userController.login);
+//router.post('/create', createUserValidation, userController.createUser);
 
-// module.exports = router;
+// router.post('/create',(req,res,next)=>{
+//     console.log("entre aca")
+//     next()
+// }, userController.createUser);
+
+router.post('/login', loginValidation, userController.login);
+
+module.exports = router;

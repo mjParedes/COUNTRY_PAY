@@ -12,7 +12,7 @@ module.exports = {
                 allowNull: false,
                 references: {
                     model: 'Users',
-                    key: 'id',
+                    key: 'userId',
                     onUpdate: 'CASCADE',
                     onDelete: 'CASCADE',
                 },
@@ -27,7 +27,7 @@ module.exports = {
                 type: Sequelize.INTEGER,
                 references: {
                     model: 'Users',
-                    key: 'id',
+                    key: 'userId',
                 },
                 onUpdate: 'CASCADE',
                 onDelete: 'CASCADE',
@@ -50,7 +50,7 @@ module.exports = {
         //Asociaciones de  la talba Users
         await queryInterface.addColumn(
             'Users', // nombre de la tabla
-            'id_billingdata', // nombre de la columna a agregar
+            'billingdataId', // nombre de la columna a agregar //-->sequelize busca este campo por defecto por lo q se tiene q llamar asi si o si 
             {
                 type: Sequelize.INTEGER,
                 allowNull: true,
@@ -65,7 +65,7 @@ module.exports = {
 
         await queryInterface.addColumn(
             'Users', // nombre de la tabla
-            'id_account', // nombre de la columna a agregar
+            'accountId', // nombre de la columna a agregar //-->sequelize busca este campo por defecto por lo q se tiene q llamar asi si o si 
             {
                 type: Sequelize.INTEGER,
                 allowNull: true,
@@ -87,7 +87,7 @@ module.exports = {
                 allowNull: true,
                 references: {
                     model: 'Users',
-                    key: 'id',
+                    key: 'userId',
                     onUpdate: 'CASCADE',
                     onDelete: 'CASCADE',
                 },

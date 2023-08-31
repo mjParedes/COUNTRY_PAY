@@ -31,8 +31,8 @@ module.exports = (sequelize, DataTypes) => {
     }
     User.init(
         {
-            id: {
-                allowNull: false,
+            userId: {
+                allowNull: false,  // equivalente a require:true
                 autoIncrement: true,
                 primaryKey: true,
                 type: DataTypes.INTEGER
@@ -61,11 +61,11 @@ module.exports = (sequelize, DataTypes) => {
                 unique: true,
             },
             id_billingdata: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.STRING,
                 allowNull: true,
             },
             id_account: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.STRING,
                 allowNull: true,
             },
             phone: {
