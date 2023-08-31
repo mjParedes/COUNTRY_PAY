@@ -34,10 +34,12 @@ app.use('/api/v1', limiter);
 // app.use('/api/v1/users', userRouter);
 // require('./routes')(app);
 
-const userRoute = require('./routes/user.routes');
-const cardRoute = require('./routes/card.routes');
-app.use('/api/v1/users', userRoute);
-app.use('/api/v1/cards', cardRoute);
+// const userRoute = require('./routes/user.routes');
+// const cardRoute = require('./routes/card.routes');
+require('./routes')(app);
+
+// app.use('/api/v1/users', userRoute);
+// app.use('/api/v1/cards', cardRoute);
 
 app.all('*', (req, res, next) => {
     return next(
