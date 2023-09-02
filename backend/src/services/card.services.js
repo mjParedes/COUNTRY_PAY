@@ -8,13 +8,14 @@ class CardServices {
     async createOneCard({ body, id, next }) {
         try {
             const account = await this.accountServices.findOneAccount({
-                attributes: { id_user: id },
+                attributes: { userId: id },
                 next,
             });
+            
             if (!account) {
                 throw next(new AppError('user has not an active account', 400));
             }
-            body.id_account = account.id;
+            body.AccountId = account.id;
             const card = await db.Cards.create(body);
             return card;
         } catch (error) {

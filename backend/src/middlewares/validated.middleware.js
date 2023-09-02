@@ -30,13 +30,13 @@ exports.createUserValidation = [
     body('name')
         .notEmpty()
         .withMessage('name cannot be empty')
-        .isLength({ min: 8 })
-        .withMessage('name must be at least 8 characters long'),
+        .isLength({ min: 3 })
+        .withMessage('name must be at least 3 characters long'),
     body('lastName')
         .notEmpty()
         .withMessage('lastName cannot be empty')
-        .isLength({ min: 8 })
-        .withMessage('lastName must be at least 8 characters long'),
+        .isLength({ min: 3 })
+        .withMessage('lastName must be at least 3 characters long'),
     body('email')
         .notEmpty()
         .withMessage('email cannot be empty')
@@ -45,13 +45,9 @@ exports.createUserValidation = [
     body('password')
         .notEmpty()
         .withMessage('password cannot be empty')
-        .isLength({ min: 5 })
-        .withMessage('password must be at least 5 characters long'),
-    body('phone')
-        .notEmpty()
-        .withMessage('description cannot be empty')
-        .isInt()
-        .withMessage('phone number must be a integer'),
+        .isLength({ min: 3 })
+        .withMessage('password must be at least 3 characters long'),
+    body('phone').isInt().withMessage('phone number must be a integer'),
     validFields,
 ];
 
@@ -90,5 +86,15 @@ exports.createCardValidation = [
         .withMessage('security_code must be an integer')
         .isLength({ min: 3, max: 3 })
         .withMessage('security_code must have 3 characters long'),
+    validFields,
+];
+exports.AvatarValidation = [
+    body('avatar').custom((valor, { req }) => {
+        console.log(req.file);
+        if (!req.file) {
+            throw new Error('Avatar image required');
+        }
+        return true;
+    }),
     validFields,
 ];

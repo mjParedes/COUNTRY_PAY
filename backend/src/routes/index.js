@@ -1,29 +1,24 @@
-// module.exports = (app) => {
-//   app.get('/api', (req,res)=>{
-//     res.status(200).send({
-//         message: 'Welcome to the API',
-//     })
-//   })
-//   //User login
+const { Router } = require('express')
+const UserRouter = require('./user.routes')
+const CardRouter = require('./card.routes')
+const SessionRouter = require('./session.routes')
+const AvatarRouter = require('./avatar.router')
 
-//   //+++++
+const routerApi = Router()
 
-//   //+++++
-// }
+//rutas de user
+routerApi.use('/user', UserRouter)
 
-const express = require('express');
-const userRoutes = require('./user.routes');
-const otherRoutes = require('./card.routes');
+//rutas de cards
+routerApi.use('/card', CardRouter)
 
-const router = express.Router();
+//rutas de sessions
+routerApi.use('/sessions', SessionRouter)
 
-router.get('/', (req, res) => {
-    res.status(200).send({
-        message: 'Welcome to the API',
-    });
-});
+//rutas de avatar
 
-router.use('/users', userRoutes);
-router.use('/cards', otherRoutes);
+routerApi.use('/avatar', AvatarRouter)
 
-module.exports = router;
+
+
+module.exports = routerApi

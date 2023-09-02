@@ -6,7 +6,7 @@ const sequelize = new Sequelize(development);
 
 sequelize
     .authenticate()
-    .then(() => console.log('database authenticate'))
+    .then((connection) => {console.log('database authenticate')})
     .catch((err) => console.log(err));
 
 sequelize
@@ -14,7 +14,9 @@ sequelize
     .then(() => console.log('database synced'))
     .catch((err) => console.log(err));
 
-//metodo listen//
+
+// metodo listen
+
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`app running on port ${PORT} 😛`);
