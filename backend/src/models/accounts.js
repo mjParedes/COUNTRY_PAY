@@ -1,6 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
 const uniqueId = require('../helpers/randomId');
+console.log("idrandom,",uniqueId())
 module.exports = (sequelize, DataTypes) => {
     class Accounts extends Model {
         /**
@@ -32,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
             account_number: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
-                defaultValue: uniqueId,
+                defaultValue: () => uniqueId(),
             },
             balance: {
                 type: DataTypes.FLOAT,

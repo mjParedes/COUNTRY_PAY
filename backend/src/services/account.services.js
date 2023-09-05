@@ -24,6 +24,9 @@ class AccountServices {
             throw error;
         }
     }
+
+    async getBalance(accountNumber){}
+
 }
 
 module.exports = AccountServices;

@@ -7,7 +7,7 @@ module.exports = {
         queryInterface.renameColumn('Accounts', 'cbu', 'account_number', {
             allowNull: false,
             type: Sequelize.INTEGER,
-            defaultValue: uniqueId,
+            defaultValue: uniqueId(),
         });
     },
 
