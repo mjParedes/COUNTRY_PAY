@@ -1,6 +1,4 @@
 const db = require('../models/index');
-const Stripe = require('stripe');
-const stripe = Stripe(process.env.STRIPE_PRIVATE_KEY);
 
 class AccountServices {
     async findOneAccount({ attributes, next }) {
@@ -14,30 +12,15 @@ class AccountServices {
         }
     }
 
-    async createAccount({ email, userId }) {
+    async createAccount(userId) {
         try {
-            const account = await stripe.accounts.create({
-                type: 'custom',
-                country: 'US',
-                email: email,
-                capabilities: {
-                    card_payments: { requested: true },
-                    transfers: { requested: true },
-                    // business_type: 'individual',
-                    metadata: {},
-                },
-            });
-
             const createdAccount = await db.Accounts.create({
-                userId: userId,
-                cbu: '...',
-                balance: 0.0,
-                account_detail_stripe: account,
+                userId,
+                balance: 100,
+                account_detail_stripe: {},
             });
-
             return createdAccount;
         } catch (error) {
-            console.log('error', error);
             throw error;
         }
     }

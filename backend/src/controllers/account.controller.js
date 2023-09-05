@@ -3,18 +3,13 @@ const AccountServices = require('../services/account.services');
 const accountServices = new AccountServices();
 
 exports.createStripeAccount = catchAsync(async (req, res, next) => {
-    const user = req.body;
-    const email = user.email;
     const userId = req.params.id;
 
-    const createdAccount = await accountServices.createAccount({
-        email,
-        userId,
-    });
+    const createdAccount = await accountServices.createAccount(userId);
 
     res.status(200).json({
         status: 'success',
-        message: 'Stripe account created and saved to database',
+        message: 'Account created and saved to database',
         account: createdAccount,
     });
 });
