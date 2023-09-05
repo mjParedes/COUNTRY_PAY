@@ -3,6 +3,6 @@ const accountController = require('../controllers/account.controller');
 
 const router = express.Router();
 
-router.post('/create-account/:id', accountController.createStripeAccount);
+router.post('/:id', accountController.createAccount);
 
 module.exports = router;
