@@ -34,6 +34,16 @@ class AccountServices {
         }
     }
 
+    async getAccountByUserId(userId) {
+        try {
+            const account = await db.Accounts.findOne({
+                where:{userId:userId}
+            })
+            return account;
+        } catch (error) {
+            throw error;
+        }
+    }
     async rechargeAccount({ body, id, next }) {
         try {
             const { number, security_code, amount } = body;
@@ -75,7 +85,21 @@ class AccountServices {
         }
     }
 
-    async getBalance(accountNumber) {}
+    async chargeAccountChargePoint({userId,amount}) {
+        try {
+            const account = await db.Accounts.findOne({
+                where:{userId:userId}
+            })
+            if(!account){
+                throw new Error("Not user found")
+            }
+            account.balance += amount
+            account.save()
+            return account;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 module.exports = AccountServices;
