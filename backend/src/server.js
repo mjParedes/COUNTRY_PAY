@@ -6,14 +6,15 @@ const sequelize = new Sequelize(development);
 
 sequelize
     .authenticate()
-    .then((connection) => {console.log('database authenticate')})
+    .then((connection) => {
+        console.log('database authenticate');
+    })
     .catch((err) => console.log(err));
 
 sequelize
     .sync()
     .then(() => console.log('database synced'))
     .catch((err) => console.log(err));
-
 
 // metodo listen
 
