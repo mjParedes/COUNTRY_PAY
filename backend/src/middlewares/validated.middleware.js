@@ -94,6 +94,11 @@ exports.createCardValidation = [
         .withMessage('security_code must be an integer')
         .isLength({ min: 3, max: 3 })
         .withMessage('security_code must have 3 characters long'),
+    body('category')
+        .notEmpty()
+        .withMessage('category is require')
+        .isIn(['visa', 'mastercard', 'americanExpress'])
+        .withMessage('category is one of visa, mastercard, americanExpress'),
     validFields,
 ];
 
@@ -105,5 +110,53 @@ exports.AvatarValidation = [
         }
         return true;
     }),
+    validFields,
+];
+
+exports.recharge = [
+    body('number')
+        .notEmpty()
+        .withMessage('campo requerido')
+        .isInt()
+        .withMessage('this field must be'),
+    body('exp_date')
+        .notEmpty()
+        .withMessage('email cannot be empty')
+        .custom(customExpiredCard)
+        .withMessage('The "exp_date" field must have the format MM/YY'),
+    body('security_code')
+        .isInt()
+        .withMessage('security_code must be an integer')
+        .isLength({ min: 3, max: 3 })
+        .withMessage('security_code must have 3 characters long'),
+    body('amount')
+        .notEmpty()
+        .withMessage('campo requerido')
+        .isFloat()
+        .withMessage('this field must be a float'),
+    body('method')
+        .notEmpty()
+        .withMessage('campo requerido')
+        .isIn(['recarga', 'transfer'])
+        .withMessage('this field must be in recarga or transfer'),
+    validFields,
+];
+
+exports.validTransfers = [
+    body('senderId')
+        .notEmpty()
+        .withMessage('field is requiered')
+        .isInt()
+        .withMessage('this field must be an integer'),
+    body('receivingId')
+        .notEmpty()
+        .withMessage('field is requiered')
+        .isInt()
+        .withMessage('this field must be an integer'),
+    body('amount')
+        .notEmpty()
+        .withMessage('field is requiered')
+        .isFloat()
+        .withMessage('this field must be a float'),
     validFields,
 ];

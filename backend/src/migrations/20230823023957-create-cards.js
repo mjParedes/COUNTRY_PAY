@@ -25,6 +25,10 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
+            category: {
+                type: Sequelize.ENUM('visa', 'mastercard', 'americanExpress'),
+                allowNull: false,
+            },
             name: {
                 type: Sequelize.STRING,
                 allowNull: false,

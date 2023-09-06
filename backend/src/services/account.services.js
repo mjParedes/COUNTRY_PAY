@@ -33,28 +33,17 @@ class AccountServices {
             throw error;
         }
     }
-
-    async getAccountByUserId(userId) {
-        try {
-            const account = await db.Accounts.findOne({
-                where:{userId:userId}
-            })
-            return account;
-        } catch (error) {
-            throw error;
-        }
-    }
     async rechargeAccount({ body, id, next }) {
         try {
             const { number, security_code, amount } = body;
             const attributes = { userId: id };
 
-            //buscar cuenta//
+            //buscar cuenta del usuario//
             const account = await this.findOneAccount({ attributes, next });
             if (!account) {
                 throw next(new AppError('user has no active account', 400));
             }
-            //buscar tarjeta//
+            //buscar tarjeta del usuario//
             const card = await db.Cards.findOne({
                 where: {
                     number,
@@ -69,9 +58,9 @@ class AccountServices {
 
             //usar servicio de crear trabsaferencia//
             const transaction = await this.transactionServices.transfer({
-                senderId: id,
+                senderId: 1,
                 receivingId: id,
-                AccountId: account.id,
+                AccountId: 1,
                 amount,
                 method: 'recharge',
             });
@@ -85,16 +74,16 @@ class AccountServices {
         }
     }
 
-    async chargeAccountChargePoint({userId,amount}) {
+    async chargeAccountChargePoint({ userId, amount }) {
         try {
             const account = await db.Accounts.findOne({
-                where:{userId:userId}
-            })
-            if(!account){
-                throw new Error("Not user found")
+                where: { userId: userId },
+            });
+            if (!account) {
+                throw new Error('Not user found');
             }
-            account.balance += amount
-            account.save()
+            account.balance += amount;
+            account.save();
             return account;
         } catch (error) {
             throw error;

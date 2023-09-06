@@ -35,6 +35,10 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
+            category: {
+                type: DataTypes.ENUM('visa', 'mastercard', 'americanExpress'),
+                allowNull: false,
+            },
             name: {
                 type: DataTypes.STRING,
                 allowNull: false,
