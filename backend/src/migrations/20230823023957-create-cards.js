@@ -14,11 +14,11 @@ module.exports = {
                 allowNull: false,
             },
             number: {
-                type: Sequelize.INTEGER,
+                type: Sequelize.STRING,
                 allowNull: false,
             },
             exp_date: {
-                type: Sequelize.INTEGER,
+                type: Sequelize.STRING,
                 allowNull: false,
             },
             type: {

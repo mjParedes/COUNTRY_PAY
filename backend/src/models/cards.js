@@ -24,11 +24,11 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false,
             },
             number: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.STRING,
                 allowNull: false,
             },
             exp_date: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.STRING,
                 allowNull: false,
             },
             type: {
@@ -40,10 +40,6 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false,
             },
             security_code: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-            },
-            id_account: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
             },

@@ -56,11 +56,19 @@ const customExpiredCard = (value) => {
     return format;
 };
 
+const customCardNumber = (value) => {
+    const regex =
+        /^(?:4\d([\- ])?\d{6}\1\d{5}|(?:4\d{3}|5[1-5]\d{2}|6011)([\- ])?\d{4}\2\d{4}\2\d{4})$/.test(
+            value,
+        );
+    return regex;
+};
+
 exports.createCardValidation = [
     body('number')
         .notEmpty()
         .withMessage('number cannot be empty')
-        .isCreditCard()
+        .custom(customCardNumber)
         .withMessage('is not a valid credit card number')
         .isLength({ min: 16, max: 16 })
         .withMessage('number'),
@@ -88,6 +96,7 @@ exports.createCardValidation = [
         .withMessage('security_code must have 3 characters long'),
     validFields,
 ];
+
 exports.AvatarValidation = [
     body('avatar').custom((valor, { req }) => {
         console.log(req.file);

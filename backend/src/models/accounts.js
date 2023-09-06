@@ -1,7 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
 const uniqueId = require('../helpers/randomId');
-console.log("idrandom,",uniqueId())
+console.log('idrandom,', uniqueId());
 module.exports = (sequelize, DataTypes) => {
     class Accounts extends Model {
         /**
@@ -10,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            console.log(models);
             this.belongsTo(models.User, { foreignKey: 'userId' });
 
             this.hasMany(models.Transaction, { foreignKey: 'AccountId' });
