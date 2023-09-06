@@ -25,8 +25,16 @@ class AccountServices {
         }
     }
 
-    async getBalance(accountNumber){}
-
+    async getAccountByUserId(userId) {
+        try {
+            const account = await db.Accounts.findOne({
+                where:{userId:userId}
+            })
+            return account;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 module.exports = AccountServices;
