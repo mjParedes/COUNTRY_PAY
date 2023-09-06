@@ -85,7 +85,21 @@ class AccountServices {
         }
     }
 
-    async getBalance(accountNumber) {}
+    async chargeAccountChargePoint({userId,amount}) {
+        try {
+            const account = await db.Accounts.findOne({
+                where:{userId:userId}
+            })
+            if(!account){
+                throw new Error("Not user found")
+            }
+            account.balance += amount
+            account.save()
+            return account;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 module.exports = AccountServices;

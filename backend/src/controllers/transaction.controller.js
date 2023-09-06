@@ -30,6 +30,24 @@ const createTransaction = catchAsync(async (req, res, next) => {
     });
 });
 
+
+const chargePointCharge = catchAsync(async (req, res, next) => {
+  const userId = +req.params.id
+  const {  amount } = req.body;
+  console.log(userId,amount)
+  
+  const data = await accountServices.chargeAccountChargePoint({userId,amount})
+  //console.log(data)
+  res.status(200).json({
+      status: 'success',
+      message: 'The account has been charged',
+  });
+});
+
+
+
+
 module.exports = {
     createTransaction,
+    chargePointCharge
 };
